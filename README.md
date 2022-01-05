@@ -1,6 +1,6 @@
 # Face Detection App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A react-based application that detects faces in image  URLs using the Clarifai API.
 
 ## Available Scripts
 
