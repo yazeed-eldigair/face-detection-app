@@ -1,5 +1,5 @@
 export const particlesOptions={
-    fpsLimit: 60,
+    fpsLimit: 30,
     interactivity: {
       events: {
         onClick: {
@@ -55,7 +55,7 @@ export const particlesOptions={
           enable: true,
           area: 1200,
         },
-        value: 200,
+        value: 80,
       },
       opacity: {
         value: 0.2,
