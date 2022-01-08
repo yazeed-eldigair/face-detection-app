@@ -8,6 +8,12 @@ A full-stack application that detects faces in image URLs using the Clarifai API
 3. Face detection on input images
 4. Tracking number of detections carried out by each user
 
+## Tech Stack
+1. React.js
+2. Node.js
+2. Express.js
+4. PostgreSQL
+
 ## Available Scripts
 
 In the project directory, you can run:
