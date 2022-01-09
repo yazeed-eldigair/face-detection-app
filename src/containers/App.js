@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import Clarifai from "clarifai";
 import Particles from "react-tsparticles";
 import { particlesOptions } from "./particlesOptions";
 import Navigation from "../components/Navigation/Navigation";
@@ -9,12 +8,7 @@ import Logo from "../components/Logo/Logo";
 import Rank from "../components/Rank/Rank";
 import ImageLinkForm from "../components/ImageLinkForm/ImageLinkForm";
 import FaceDetection from "../components/FaceDetection/FaceDetection";
-
 import "./App.css";
-
-const app = new Clarifai.App({
-  apiKey: "960ce0384bbe4c36a0c7f0dc9655ee25",
-});
 
 const initialState = {
   input: "",
@@ -68,8 +62,13 @@ class App extends Component {
 
   onSubmit = () => {
     this.setState({ imageURL: this.state.input });
-    app.models
-      .predict(Clarifai.FACE_DETECT_MODEL, this.state.input)
+      fetch("http://localhost:3001/imageurl", {
+        method: "post",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          input: this.state.input,
+        })
+      }).then(response => response.json())
       .then((response) => {
         if (response) {
           fetch("http://localhost:3001/image", {
@@ -77,7 +76,7 @@ class App extends Component {
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
               id: this.state.user.id,
-            }),
+            })
           })
             .then((res) => res.json())
             .then((count) => {
@@ -115,7 +114,7 @@ class App extends Component {
       this.setState({ isSignedIn: true });
     }
     this.setState({ route: route });
-  };
+  }
 
   render() {
     const { isSignedIn, imageURL, box, route } = this.state;
@@ -125,7 +124,7 @@ class App extends Component {
           className="particles"
           params={particlesOptions}
           id="tsparticles"
-        />
+        /> 
         <Navigation
           onRouteChange={this.onRouteChange}
           isSignedIn={isSignedIn}
