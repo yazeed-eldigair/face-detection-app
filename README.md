@@ -1,6 +1,6 @@
 # Face Detection App
 
-A full-stack application that detects faces in image URLs using the Clarifai API.
+A web application that detects faces in image URLs using the Clarifai API.
 
 ## Features
 1. User registration
