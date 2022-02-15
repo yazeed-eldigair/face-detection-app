@@ -8,6 +8,7 @@ import Logo from "../components/Logo/Logo";
 import Rank from "../components/Rank/Rank";
 import ImageLinkForm from "../components/ImageLinkForm/ImageLinkForm";
 import FaceDetection from "../components/FaceDetection/FaceDetection";
+import Examples from "../components/Examples/Examples";
 import "./App.css";
 
 const initialState = {
@@ -61,14 +62,16 @@ class App extends Component {
   };
 
   onSubmit = () => {
+    if(this.state.input.length==0) return;
     this.setState({ imageURL: this.state.input });
-      fetch("https://secret-headland-04901.herokuapp.com/imageurl", {
-        method: "post",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          input: this.state.input,
-        })
-      }).then(response => response.json())
+    fetch("https://secret-headland-04901.herokuapp.com/imageurl", {
+      method: "post",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        input: this.state.input,
+      }),
+    })
+      .then((response) => response.json())
       .then((response) => {
         if (response) {
           fetch("https://secret-headland-04901.herokuapp.com/image", {
@@ -76,7 +79,7 @@ class App extends Component {
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
               id: this.state.user.id,
-            })
+            }),
           })
             .then((res) => res.json())
             .then((count) => {
@@ -110,11 +113,12 @@ class App extends Component {
   onRouteChange = (route) => {
     if (route == "signOut") {
       this.setState({ initialState });
+      this.setState({ isSignedIn: false });
     } else if (route == "home") {
       this.setState({ isSignedIn: true });
     }
     this.setState({ route: route });
-  }
+  };
 
   render() {
     const { isSignedIn, imageURL, box, route } = this.state;
@@ -124,7 +128,7 @@ class App extends Component {
           className="particles"
           params={particlesOptions}
           id="tsparticles"
-        /> 
+        />
         <Navigation
           onRouteChange={this.onRouteChange}
           isSignedIn={isSignedIn}
@@ -140,6 +144,7 @@ class App extends Component {
               onInputChange={this.onInputChange}
               onSubmit={this.onSubmit}
             />
+            <Examples />
             <FaceDetection imageURL={imageURL} box={box} />
           </div>
         ) : route == "signIn" ? (

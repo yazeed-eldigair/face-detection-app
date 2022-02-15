@@ -23,6 +23,10 @@ class Register extends React.Component {
   };
 
   onSubmitRegister = () => {
+    if (this.state.email.length == 0 || this.state.name.length == 0 || this.state.password.length == 0) {
+      alert("Required field is missing!");
+      return;
+    }
     fetch('https://secret-headland-04901.herokuapp.com/register', {
       method: 'post',
       headers: {'Content-Type': 'application/json'},

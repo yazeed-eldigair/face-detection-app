@@ -18,6 +18,10 @@ class SignIn extends React.Component {
   };
 
   onSubmitSignIn = () => {
+    if (this.state.signInEmail.length == 0 || this.state.signInPassword.length == 0) {
+      alert("Required field is missing!");
+      return;
+    }
     fetch('https://secret-headland-04901.herokuapp.com/signin', {
       method: 'post',
       headers: {'Content-Type': 'application/json'},
@@ -31,6 +35,8 @@ class SignIn extends React.Component {
       if(user.id){
         this.props.loadUser(user);
         this.props.onRouteChange('home');
+      } else {
+        alert('Wrong credentials. Please try again.');
       }
     })
   }
