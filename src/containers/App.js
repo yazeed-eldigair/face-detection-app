@@ -83,6 +83,7 @@ class App extends Component {
               id: this.state.user.id,
             }),
           })
+          
             .then((res) => res.json())
             .then((count) => {
               this.setState(Object.assign(this.state.user, { entries: count }));
