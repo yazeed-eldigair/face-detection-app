@@ -17,6 +17,7 @@ const initialState = {
   box: {},
   route: "signIn",
   isSignedIn: false,
+  demoMode: false,
   user: {
     id: "",
     name: "",
@@ -35,6 +36,7 @@ class App extends Component {
       box: {},
       route: "signIn",
       isSignedIn: false,
+      demoMode: false,
       user: {
         id: "",
         name: "",
@@ -73,7 +75,7 @@ class App extends Component {
     })
       .then((response) => response.json())
       .then((response) => {
-        if (response) {
+        if (response && !this.state.demoMode) {
           fetch("https://secret-headland-04901.herokuapp.com/image", {
             method: "put",
             headers: { "Content-Type": "application/json" },
@@ -86,6 +88,9 @@ class App extends Component {
               this.setState(Object.assign(this.state.user, { entries: count }));
             })
             .catch(console.log);
+        } else if (this.state.demoMode){
+          let count = this.state.user.entries + 1;
+          this.setState(Object.assign(this.state.user, { entries: count}));
         }
         this.displayFaceBox(this.calculateFaceLocation(response));
       })
@@ -111,17 +116,22 @@ class App extends Component {
   };
 
   onRouteChange = (route) => {
-    if (route == "signOut") {
+    if (route == "signIn") {
       this.setState({ initialState });
       this.setState({ isSignedIn: false });
+      this.toggleDemoMode(false);
     } else if (route == "home") {
       this.setState({ isSignedIn: true });
     }
     this.setState({ route: route });
   };
 
+  toggleDemoMode = (value) => {
+    this.setState({ demoMode: value});
+  }
+
   render() {
-    const { isSignedIn, imageURL, box, route } = this.state;
+    const { isSignedIn, imageURL, box, route, demoMode } = this.state;
     return (
       <div className="App">
         <Particles
@@ -134,7 +144,8 @@ class App extends Component {
           isSignedIn={isSignedIn}
         />
         <Logo />
-        {route == "home" ? (
+        {route == "home" && demoMode == false ? (
+          
           <div>
             <Rank
               name={this.state.user.name}
@@ -144,11 +155,27 @@ class App extends Component {
               onInputChange={this.onInputChange}
               onSubmit={this.onSubmit}
             />
-            <Examples />
+            {/* <Examples /> */}
             <FaceDetection imageURL={imageURL} box={box} />
           </div>
+
+        ) : route == "home" && demoMode == true ? (
+
+          <div>
+            <Rank
+              name='Hello'
+              entries={this.state.user.entries}
+            />
+            <ImageLinkForm
+              onInputChange={this.onInputChange}
+              onSubmit={this.onSubmit}
+            />
+            {/* <Examples /> */}
+            <FaceDetection imageURL={imageURL} box={box} />
+          </div>
+
         ) : route == "signIn" ? (
-          <SignIn loadUser={this.loadUser} onRouteChange={this.onRouteChange} />
+          <SignIn loadUser={this.loadUser} onRouteChange={this.onRouteChange} toggleDemoMode={this.toggleDemoMode} />
         ) : (
           <Register
             loadUser={this.loadUser}

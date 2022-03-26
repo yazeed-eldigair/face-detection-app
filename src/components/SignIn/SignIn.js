@@ -40,6 +40,11 @@ class SignIn extends React.Component {
       }
     })
   }
+  
+  onSubmitDemoSignIn = () => {
+    this.props.onRouteChange('home');
+    this.props.toggleDemoMode(true);
+  }
 
   render() {
     const { onRouteChange } = this.props;
@@ -78,9 +83,20 @@ class SignIn extends React.Component {
               <input
                 onClick={this.onSubmitSignIn}
                 // onClick={() => onRouteChange("home")}
-                className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib"
+                className="b ph3 pv2 br4 input-reset ba b--black bg-transparent grow pointer f6 dib"
+                style={{width: 132}}
                 type="submit"
-                value="Sign in"
+                value="Sign In"
+              />
+            </div>
+            <div className="mt3">
+              <input
+                onClick={this.onSubmitDemoSignIn}
+                // onClick={() => onRouteChange("home")}
+                className="b ph3 pv2 br4 input-reset ba b--black bg-transparent grow pointer f6 dib"
+                style={{width: 132}}
+                type="submit"
+                value="Demo Sign In"
               />
             </div>
             <div className="lh-copy mt3">
