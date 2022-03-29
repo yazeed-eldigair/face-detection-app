@@ -94,7 +94,7 @@ class Register extends React.Component {
               <input
                 onClick={this.onSubmitRegister}
                 // onClick={() => onRouteChange("home")}
-                className="b ph3 pv2 br4 input-reset ba b--black bg-transparent grow pointer f6 dib"
+                className="b ph3 pv2 br4 input-reset ba b--black bg-transparent grow pointer f6 dib ba bw1"
                 style={{width: 132}}
                 type="submit"
                 value="Register"

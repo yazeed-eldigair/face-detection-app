@@ -135,11 +135,11 @@ class App extends Component {
     const { isSignedIn, imageURL, box, route, demoMode } = this.state;
     return (
       <div className="App">
-        <Particles
+        {/* <Particles
           className="particles"
           params={particlesOptions}
           id="tsparticles"
-        />
+        /> */}
         <Navigation
           onRouteChange={this.onRouteChange}
           isSignedIn={isSignedIn}

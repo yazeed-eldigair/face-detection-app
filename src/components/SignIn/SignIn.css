@@ -1,0 +1,32 @@
+.demo-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    margin-top: 24px;
+    /* left: 23px; */
+}
+
+.demo-signin {
+    align-self: center;
+    justify-self: center;
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+.icon-container{
+    display: flex;
+    position: absolute;
+    right: -10px;
+}
+
+.info-icon {
+    font-size: 30px;
+    cursor: pointer;
+    color: black;
+}
+
+.reg {
+    margin-top: 24px;
+}
+

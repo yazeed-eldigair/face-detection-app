@@ -1,9 +1,73 @@
 .form {
   font-family: Arial, Helvetica, sans-serif;
   width: 700px;
-  background:
-radial-gradient(circle at 100% 50%, transparent 20%, rgba(255,255,255,.3) 21%, rgba(255,255,255,.3) 34%, transparent 35%, transparent),
-radial-gradient(circle at 0% 50%, transparent 20%, rgba(255,255,255,.3) 21%, rgba(255,255,255,.3) 34%, transparent 35%, transparent) 0 -50px;
-background-color: slategray;
-background-size:75px 100px;
+  background: radial-gradient(
+      circle at 100% 50%,
+      transparent 20%,
+      rgba(255, 255, 255, 0.3) 21%,
+      rgba(255, 255, 255, 0.3) 34%,
+      transparent 35%,
+      transparent
+    ),
+    radial-gradient(
+        circle at 0% 50%,
+        transparent 20%,
+        rgba(255, 255, 255, 0.3) 21%,
+        rgba(255, 255, 255, 0.3) 34%,
+        transparent 35%,
+        transparent
+      )
+      0 -50px;
+  background-color: slategray;
+  background-size: 75px 100px;
+}
+
+/* .info-icon {
+} */
+
+.info {
+  font-size: 40px;
+  position: relative;
+  align-self: center;
+  left: 80px;
+  cursor: pointer;
+}
+
+.info::before,
+.info::after {
+  --scale: 0;
+  --tooltip-color: #333;
+  --arrow-size: 10px;
+
+  position: absolute;
+  top: -0.25rem;
+  left: 50%; 
+  transform: translateX(-50%) translateY(var(--translate-y,0)) scale(var(--scale));
+  transition: 150ms transform;
+  transform-origin: bottom center;
+}
+
+.info::before {
+  --translate-y: calc(-100% - var(--arrow-size));
+  content: attr(data-tooltip);
+  font-size: 20px;
+  color: white;
+  padding: .5rem;
+  border-radius: .3rem;
+  width: max-content;
+  background: var(--tooltip-color);
+}
+
+.info:hover::before,
+.info:hover::after {
+  --scale: 1;
+}
+
+.info::after {
+  --translate-y: calc(-1*var(--arrow-size));
+
+  content: '';
+  border: var(--arrow-size) solid transparent;
+  border-top-color: var(--tooltip-color);
+  transform-origin: top center;
 }
