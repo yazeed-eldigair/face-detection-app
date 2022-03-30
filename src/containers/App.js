@@ -147,7 +147,7 @@ class App extends Component {
         <Logo />
         {route == "home" && demoMode == false ? (
           
-          <div>
+          <div className="container">
             <Rank
               name={this.state.user.name}
               entries={this.state.user.entries}
@@ -162,7 +162,7 @@ class App extends Component {
 
         ) : route == "home" && demoMode == true ? (
 
-          <div>
+          <div className="container">
             <Rank
               name='Hello'
               entries={this.state.user.entries}

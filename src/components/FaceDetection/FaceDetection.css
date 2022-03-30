@@ -5,5 +5,8 @@
     flex-wrap: wrap;
     justify-content: center;
     cursor: pointer;
+}
 
+#inputImage {
+    margin-top: 60px;
 }

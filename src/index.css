@@ -1,6 +1,7 @@
 body {
   margin: 0;
-  font-family: 'Georgia','Courier New', Courier, monospace;
+  /* font-family: 'Georgia','Courier New', Courier, monospace; */
+  font-family: 'Trebuchet MS', sans-serif;
   background: linear-gradient(to right, #544a7d,#ffd452);
 }
 
