@@ -1,6 +1,5 @@
 import React from "react";
 import "./ImageLinkForm.css";
-import { GoInfo } from "react-icons/go";
 import { AiFillEye } from 'react-icons/ai';
 import LoadingButton from '@mui/lab/LoadingButton/LoadingButton';
 
