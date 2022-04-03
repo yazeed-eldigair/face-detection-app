@@ -1,4 +1,4 @@
-import React, { useReducer } from "react";
+import React from "react";
 import { GoInfo } from "react-icons/go";
 import Tooltip from "@mui/material/Tooltip";
 import "./SignIn.css";
