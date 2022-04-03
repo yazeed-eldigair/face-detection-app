@@ -1,6 +1,5 @@
 {
   "name": "face-rec-app",
-  "homepage": "http://YazeedEld.github.io/face-detection-app",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
